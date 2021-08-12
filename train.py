@@ -49,9 +49,6 @@ data_module = CustomDataModule(
     batch_size=cfg.BATCH_SIZE,
     num_workers=cfg.NUM_WORKERS,
 )
-train = data_module.train_dataloader()
-val = data_module.val_dataloader()
-test = data_module.test_dataloader()
 
 model = CustomModule(
     seq_len=cfg.SEQ_LEN,
@@ -61,9 +58,9 @@ model = CustomModule(
 )
 
 print('Start model fitting')
-trainer.fit(model, train, val)
+trainer.fit(model, data_module)
 
 print('Start testing')
-trainer.test(test_dataloaders=test)
+trainer.test(datamodule=data_module)
 
 print(f'Best model : {checkpoint_callback.best_model_path}')
