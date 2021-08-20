@@ -14,7 +14,7 @@ class Config:
         self.NUM_GPUS = 1
         self.MAX_EPOCHS = 100
         self.BATCH_SIZE = 128
-        self.CRITERION = 'RMSE'
+        self.CRITERION = 'CrossEntropy'
         self.OPTIMIZER = 'AdamW'
         self.LEARNING_RATE = 1e-6
         self.NUM_WORKERS = 4
@@ -25,8 +25,11 @@ class Config:
         self.SEQ_LEN = 256
         self.NUM_VOCABS = 30000
         self.MAX_LEN = 512
-        self.D_MODEL = 256
-        self.EMBEDDING_DROPOUT = 0.1
+        self.D_MODEL = 512
+        self.D_FF = 2048
+        self.NUM_LAYERS = 6
+        self.DROPOUT = 0.1
+        self.EPSILON = 1e-5
 
         self.project_dir = dirname(abspath(__file__))
         self.DATA_DIR = join(self.project_dir, self.DATA_DIR)
