@@ -50,7 +50,7 @@ class MultiHeadAttention(nn.Module):
         self.value = nn.Linear(d_model, d_model)
         self.key = nn.Linear(d_model, d_model)
         self.query = nn.Linear(d_model, d_model)
-        self.attention = ScaledDotProductAttention(self.d_k)
+        self.register_buffer('attention', ScaledDotProductAttention(self.d_k))
         self.fc = nn.Linear(d_model, d_model)
 
     def forward(self, v, k, q):
